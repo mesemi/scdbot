@@ -135,9 +135,27 @@ client.on('messageCreate', async message => {
 				name: 'alltotals',
 				description: "Lists all users accepted tests."
 			},
+			{
+				name: 'change',
+				description: 'Changes a users data.',
+				options: [
+					{
+						name: "damention",
+						description: "User being changed.",
+						type: "USER",
+						required: true,
+					},
+					{
+						name: "davalue",
+						description: "What are you changing their total to?",
+						type: "INTEGER",
+						required: true,
+					}
+				],
+			},
 		];
 
-		const command = await client.guilds.cache.get('870841351212785664')?.commands.set(data);
+		const command = await client.application?.commands.set(data);
 	}
 });
 
@@ -147,8 +165,8 @@ client.on('interactionCreate', async interaction => {
 
 	if (!client.commands.has(interaction.commandName)) return;
 
-	const channel = await client.channels.cache.get('873711021330694214'); //Reporting channel
-	const fchannel = await client.channels.cache.get('874100159447978024'); //Feedback channel.
+	const channel = await client.channels.cache.get('874097034288848896'); //Reporting channel
+	const fchannel = await client.channels.cache.get('731984961480949762'); //Feedback channel.
 	module.exports = {
 		channel,
 		fchannel,

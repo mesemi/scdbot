@@ -61,7 +61,6 @@ module.exports = {
         const fs = require('fs');
         const tests = require('./tests.json');
         const data = require('./data.json');
-        const token = require('./token.json');
 
         function saveDatad() {
             fs.writeFile('./commands/data.json', JSON.stringify(data), function (err) { 

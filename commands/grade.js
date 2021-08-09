@@ -50,7 +50,7 @@ module.exports = {
 		const test = interaction.options.getString('test');
         const grade = interaction.options.getString('grade');
         const feedback = interaction.options.getString('feedback');
-        if (interaction.channel.id == '873711021330694214') {
+        if (interaction.channel.id == index.channel) {
             if (!tests.test[test]) {
                 interaction.reply({content: "Invalid ID.", ephemeral: true});
             } else {
