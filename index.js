@@ -1,7 +1,6 @@
 const { Client, Collection, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fs = require('fs');
-var token = require('./token.json');
 client.commands = new Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -21,7 +20,6 @@ client.on('ready', () => {
 		console.log(`${guild.name} | ${guild.id}`);
 	})
 });
-
 
 client.on('messageCreate', async message => {
 	if (!client.application?.owner) await client.application?.fetch();
@@ -78,24 +76,51 @@ client.on('messageCreate', async message => {
 						description: 'The rationale for the test.',
 						required: true,
 					},
+          {
+						name: 'description',
+						type: 'STRING',
+						description: 'The test described in detail.',
+						required: true,
+					},
 					{
 						name: 'conclusion',
 						type: 'STRING',
 						description: 'The conclusion derived from the test.',
 						required: true,
 					},
-					{
-						name: 'description',
-						type: 'STRING',
-						description: 'The test described in detail.',
-						required: true,
-					}
+          {
+            name: 'proof',
+            type: 'STRING',
+            description: 'MUST BE AN IMAGE LINK',
+            required: true,
+          },
+          {
+            name: 'notes',
+            type: 'STRING',
+            description: 'Extra notes.',
+          }
 				],
 			},
 			{
 				name: 'grade',
 				description: 'Grades a test.',
 				options: [
+					{
+						name: "item",
+						type: "STRING",
+						description: "What are you grading?",
+						required: true,
+						choices: [
+							{
+								name: "Test",
+								value: "test",
+							},
+							{
+								name: "Report",
+								value: "Report",
+							}
+						],
+					},
 					{
 						name: "test",
 						type: "STRING",
@@ -124,7 +149,6 @@ client.on('messageCreate', async message => {
 						description: "Give feedback to the test.",
 						required: true,
 					},
-				
 				],
 			},
 			{
@@ -153,8 +177,68 @@ client.on('messageCreate', async message => {
 					}
 				],
 			},
+      {
+				name: 'report',
+				description: 'Submit a RA report.',
+				options: [
+					{
+						name: 'date',
+						type: "STRING",
+						description: "Date of writing.",
+						required: true,
+					},
+					{
+						name: 'clearance',
+						type: 'STRING',
+						description: 'Your currenty security clearance.',
+						required: true,
+					},
+					{
+						name: 'questionone',
+						type: 'STRING',
+						description: 'What Object Class can a Junior Researcher test on?',
+						required: true,
+					},
+					{
+						name: 'questiontwo',
+						type: 'STRING',
+						description: 'How many Security Operatives are required for a Safe Class test?',
+						required: true,
+					},
+					{
+						name: 'questionthree',
+						type: 'STRING',
+						description: 'What is the format to request Class-D from the Class-D Containment Zone?',
+						required: true,
+					},
+					{
+						name: 'questionfour',
+						type: 'STRING',
+						description: 'What should you do if a breach occurs during your test?',
+						required: true,
+					},
+					{
+						name: 'questionfive',
+						type: 'STRING',
+						description: 'What is your personal goal as a researcher? ',
+						required: true,
+					},
+					{
+						name: 'questionsix',
+						type: 'STRING',
+						description: 'What SCP would you say is your favorite? Describe it in 2-3 sentences. ',
+						required: true,
+					},
+					{
+						name: 'questionseven',
+						type: 'STRING',
+						description: 'Have you read the Code of Ethics?',
+						required: true,
+					}
+				],
+			},
 		];
-
+    message.reply("deployed");
 		const command = await client.application?.commands.set(data);
 	}
 });
@@ -181,4 +265,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 
-client.login(token.token);
+client.login(process.env.TOKEN);
