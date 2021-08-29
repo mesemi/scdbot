@@ -45,16 +45,27 @@ module.exports = {
             required: true,
         },
         {
+            name: 'description',
+            type: 'STRING',
+            description: 'The test described in detail.',
+            required: true,
+        },
+        {
             name: 'conclusion',
             type: 'STRING',
             description: 'The conclusion derived from the test.',
             required: true,
         },
         {
-            name: 'description',
+          name: 'proof',
+          type: 'STRING',
+          description: 'MUST BE A LINK',
+          required: true,
+        },
+        {
+            name: 'notes',
             type: 'STRING',
-            description: 'The test described in detail.',
-            required: true,
+            description: 'Extra notes.',
         }
 	],
 	async execute(interaction) {
@@ -75,7 +86,7 @@ module.exports = {
 
         const { MessageEmbed } = require('discord.js');
 
-		const Date = interaction.options.getString('thedate');
+		    const Date = interaction.options.getString('thedate');
         const Rank = interaction.options.getString('departmentrank');
         const CDs = interaction.options.getInteger('dclass');
         const Combatives = interaction.options.getInteger('combatives');
@@ -84,21 +95,31 @@ module.exports = {
         const Rationale = interaction.options.getString('rationale');
         const Conclusion = interaction.options.getString('conclusion');
         const Desc = interaction.options.getString('description');
-
-        const index = require('C:/Users/chad/OneDrive/Desktop/DISCORD BOTS/scdbot/index.js');
+        const Proof = interaction.options.getString('proof');
+        let Notes = interaction.options.getString('notes');
+    
+        if (Notes == undefined) {
+          Notes = 'N/A';
+        } else {
+          return;
+        }
+        const index = require('/app/index.js');
 
         const testNumber = Math.floor(Math.random() * 10000);
+        if (interaction.channel.id == '722731715407118399') {
+          tests.test[testNumber] = {'user': interaction.user.id};
+          saveDatat();
 
-        tests.test[testNumber] = {'user': interaction.user.id};
-        saveDatat();
-        
-        const theEmbed = new MessageEmbed()
-            .setColor('#233287')
-            .setTitle('ScD Test ID#' + testNumber)
-            .setAuthor(interaction.member.displayName, interaction.user.avatarURL())
-            .setDescription("Date of Test: " + Date + "\nDepartment Rank: " + Rank + "\n\n# of Class-D used: " + CDs + "\n\n# of Combatives: " + Combatives + "\n\nSpectators: " + Specs + "\n\nSCP(s) tested on: " + SCPs + "\n\nTest Rationale: " + Rationale + "\n\nConclusion: " + Conclusion + "\n\nThe test described in detail: " + Desc)
-            .setTimestamp()
-        index.channel.send({ embeds: [theEmbed] });
-        interaction.reply('Your log was successfully sent.');
+          const theEmbed = new MessageEmbed()
+              .setColor('#233287')
+              .setTitle('ScD Test ID#' + testNumber)
+              .setAuthor(interaction.member.displayName, interaction.user.avatarURL())
+              .setDescription("Date of Test: " + Date + "\nDepartment Rank: " + Rank + "\n\n# of Class-D used: " + CDs + "\n\n# of Combatives: " + Combatives + "\n\nSpectators: " + Specs + "\n\nSCP(s) tested on: " + SCPs + "\n\nTest Rationale: " + Rationale + "\n\nThe test described in detail: " + Desc + "\n\nConclusion: " + Conclusion + "\n\nProof: " + Proof + "\n\nNotes: " + Notes)
+              .setTimestamp()
+          index.channel.send({ embeds: [theEmbed] });
+          interaction.reply('Your log was successfully sent.');
+        } else {
+          interaction.reply({content: "Wrong channel.", ephemeral: true})
+        }
     },
 };

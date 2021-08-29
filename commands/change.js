@@ -25,7 +25,7 @@ module.exports = {
 		var data = require('./data.json');
 		const daMention = interaction.options.getUser("damention");
 		const daValue = interaction.options.getInteger("davalue");
-        const index = require('C:/Users/chad/OneDrive/Desktop/DISCORD BOTS/scdbot/index.js');
+        const index = require('/app/index.js');
 
         if (interaction.channel.id == index.channel) {
 
