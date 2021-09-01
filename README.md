@@ -1,3 +1,3 @@
 # ScD Bot
 omg.. no way...
-discord.gg/ErQCF58fZ7
+discord.gg/ErQCF58fZ7 // also testing
