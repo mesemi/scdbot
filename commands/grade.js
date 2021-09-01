@@ -3,6 +3,22 @@ module.exports = {
 	description: 'Grades a test.',
     options: [
         {
+						name: "item",
+						type: "STRING",
+						description: "What are you grading?",
+						required: true,
+						choices: [
+							{
+								name: "Test",
+								value: "test",
+							},
+							{
+								name: "Report",
+								value: "Report",
+							}
+						],
+					},
+        {
             name: "test",
             type: "STRING",
             description: "ID of test.",
