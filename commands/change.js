@@ -15,15 +15,15 @@ module.exports = {
 	async execute(client, interaction) {
 		const fs = require('fs');
 		function saveDatad() {
-            fs.writeFile('/app/data/json/data.json', JSON.stringify(data), function (err) { 
+            fs.writeFile('/app/.data/data.json', JSON.stringify(data), function (err) {
                 if (err) throw err;
             });
         }
-		var data = require('/app/data/json/data.json');
+		var data = require('/app/.data/data.json');
 		const daMention = interaction.options.getUser("damention");
 		const daValue = interaction.options.getInteger("davalue");
 
-      const channel = await client.channels.cache.get('874097034288848896');  
+      const channel = await client.channels.cache.get('874097034288848896');
       if (interaction.channel === channel) {
 
 			if (!data.users[daMention.id]) {

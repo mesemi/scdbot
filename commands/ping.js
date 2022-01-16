@@ -8,7 +8,7 @@ module.exports = {
       .setDescription('Replies with Pong!'),
 	async execute(client, interaction) {
     const fs = require('fs')
-    const tests = require('/app/data/json/tests.json')
+    const tests = require('/app/.data/tests.json')
     /*
     if (interaction.member.id === '304002526141874187') {
       console.log(tests)
