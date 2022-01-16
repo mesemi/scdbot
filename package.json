@@ -1,14 +1,17 @@
 {
-  "name": "scdbot",
-  "version": "1.0.0",
-  "description": "Bot made for Civilous' SCPF Scientific Department",
+  "name": "entbot",
+  "version": "2.0.0",
+  "description": "Bot made for Civilous' SCPF Engineering and Technical Department",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "^13.0.1",
-    "node": "^16.6.1"
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "node": "^16.13.0"
   },
   "engines": {
     "node": "16.6.1"
