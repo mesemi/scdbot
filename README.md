@@ -1,3 +1,3 @@
 # ScD Bot
-omg.. no way...
+omg.. no way..
 discord.gg/ErQCF58fZ7
