@@ -6,6 +6,7 @@ client.buttons = new Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const buttonFiles = fs.readdirSync('./buttons').filter(file => file.endsWith('.js'));
+const dataFiles = fs.readdirSync('./.data').filter(file => file.endsWith('.json'));
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -22,6 +23,7 @@ Discord bot made for Civilous' SCPF Scientific Department by mesemi#0758
 
 client.on('ready', () => {
 	console.log(`[ScD Bot] Logged in! ✔️`);
+	console.log(`[ScD Bot] Currently registered data files: ` + dataFiles)
 });
 
 
